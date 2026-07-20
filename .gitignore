@@ -1,0 +1,9 @@
+.venv/
+.venv.bak-py38/
+__pycache__/
+*.pyc
+.streamlit/secrets.toml
+data/
+backups/
+*.sqlite3
+

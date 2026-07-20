@@ -1,0 +1,21 @@
+# 公网可见：监听 0.0.0.0
+[server]
+address = "0.0.0.0"
+port = 8501
+enableCORS = true
+enableXsrfProtection = true
+
+[theme]
+base = "dark"
+primaryColor = "#f97316"
+backgroundColor = "#0e1117"
+secondaryBackgroundColor = "#262730"
+textColor = "#fafafa"
+font = "sans serif"
+
+[client]
+showSidebarNavigation = false
+
+[browser]
+gatherUsageStats = false
+

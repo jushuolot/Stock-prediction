@@ -1,0 +1,59 @@
+{
+  "date": "2026-07-14",
+  "items": [
+    {
+      "code": "301379",
+      "name": "天山电子",
+      "tag": "预测未中·复盘",
+      "score": null,
+      "pct": null,
+      "one_line": "轻量分析失败：未获取到行情：301379",
+      "verdict": "待查"
+    },
+    {
+      "code": "301520",
+      "name": "万邦医药",
+      "tag": "快照异动Δ-29.7%",
+      "score": null,
+      "pct": null,
+      "one_line": "轻量分析失败：未获取到行情：301520",
+      "verdict": "待查"
+    },
+    {
+      "code": "300475",
+      "name": "香农芯创",
+      "tag": "快照异动Δ+26.5%",
+      "score": null,
+      "pct": null,
+      "one_line": "轻量分析失败：未获取到行情：300475",
+      "verdict": "待查"
+    },
+    {
+      "code": "300223",
+      "name": "北京君正",
+      "tag": "快照异动Δ+22.7%",
+      "score": null,
+      "pct": null,
+      "one_line": "轻量分析失败：未获取到行情：300223",
+      "verdict": "待查"
+    },
+    {
+      "code": "301583",
+      "name": "C托伦斯",
+      "tag": "快照异动Δ-21.6%",
+      "score": null,
+      "pct": null,
+      "one_line": "轻量分析失败：未获取到行情：301583",
+      "verdict": "待查"
+    },
+    {
+      "code": "300408",
+      "name": "三环集团",
+      "tag": "快照异动Δ+21.0%",
+      "score": null,
+      "pct": null,
+      "one_line": "轻量分析失败：未获取到行情：300408",
+      "verdict": "待查"
+    }
+  ]
+}

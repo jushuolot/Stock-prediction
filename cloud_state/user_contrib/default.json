@@ -1,0 +1,62 @@
+{
+  "user_id": "default",
+  "updated_at": "2026-07-17T00:25:52+08:00",
+  "profile": {
+    "user_id": "default",
+    "style_label": "偏成长小盘 · 爱追突破",
+    "hit_rate_pct": null,
+    "hit_summary": "尚无到期验证记录",
+    "top_patterns": [
+      "突破在即"
+    ],
+    "top_codes": [
+      "301379",
+      "688031",
+      "NVDA",
+      "SNX",
+      "601126"
+    ],
+    "board_mix": {
+      "创业板": 2,
+      "科创板": 1,
+      "港美/其他": 2,
+      "沪市主板": 1
+    },
+    "watch_count": 5,
+    "pick_count": 1,
+    "search_top": [
+      "synnex"
+    ],
+    "notes": [
+      "推荐记录尚少，画像将随使用变准"
+    ]
+  },
+  "recent_picks": [
+    "301379"
+  ],
+  "watchlist_hint": [
+    {
+      "代码": "688031",
+      "名称": "星环科技"
+    },
+    {
+      "代码": "NVDA",
+      "名称": "英伟达"
+    },
+    {
+      "代码": "SNX",
+      "名称": "TD SYNNEX Corporation"
+    },
+    {
+      "代码": "601126",
+      "名称": "四方股份"
+    },
+    {
+      "代码": "300819",
+      "名称": "聚杰微纤"
+    }
+  ],
+  "search_top": [
+    "synnex"
+  ]
+}
