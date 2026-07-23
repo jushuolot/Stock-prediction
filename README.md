@@ -3,7 +3,7 @@
 仓库：https://github.com/jushuolot/Stock-prediction
 
 在浏览器里完成：**一键筛 A 股 · 看买/观望 · 核对涨没涨**。默认 **🌱 私人选股花园**（单页极简）；侧边栏可进专家七页。  
-**v5.2.0 · 1060 步** — 自动推荐 + 命中率成绩单 · 私密部署 [docs/PRIVATE_GARDEN.md](docs/PRIVATE_GARDEN.md)
+**v6.4.0 · 1180 步** — 精准闸门 + 近失榜透明 · 私密部署 [docs/PRIVATE_GARDEN.md](docs/PRIVATE_GARDEN.md)
 
 ---
 

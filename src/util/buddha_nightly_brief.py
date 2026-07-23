@@ -20,6 +20,7 @@ def build_nightly_brief(
     cloud_sync_at: str | None = None,
     strategy_hints: list[str] | None = None,
     macro_regime: dict[str, Any] | None = None,
+    near_miss_summary: str | None = None,
     version: str = APP_VERSION,
     step: int = EVOLUTION_STEP,
 ) -> dict[str, Any]:
@@ -46,11 +47,17 @@ def build_nightly_brief(
     if hit_src == "cloud" and hit_label != "尚无到期验证记录":
         hit_label = f"云端{hit_label}"
 
+    nm = (near_miss_summary or "").strip()
+
     if not fresh:
         action = "数据未达今日标准，请勿采信推荐；等收盘后或明日再开。"
         mood = "red"
     elif not a_picks and not global_picks:
-        action = "今日暂无达标推荐；可点「预测明日」或等晚间自动扫盘。"
+        action = (
+            f"今日暂无达标推荐；{nm}。"
+            if nm
+            else "今日暂无达标推荐；可点「预测明日」或等晚间自动扫盘。"
+        )
         mood = "yellow"
     elif regime_label == "防守" or prob >= 55:
         action = f"防守体制（大跌概率 {prob:.0f}%）：轻仓、偏观望，勿追高。"
@@ -69,6 +76,8 @@ def build_nightly_brief(
         f"**大盘** 1~2周大跌概率 **{prob:.0f}%** · {o2w}",
         f"**成绩单** {hit_label}" + (f" · 命中率 **{hit_rate:.0f}%**" if hit_rate is not None else ""),
     ]
+    if nm:
+        lines.append(f"**近失** {nm}")
     if regime_label:
         rb = f" · 风险预算 {float(risk_budget):.0%}" if risk_budget is not None else ""
         lines.append(f"**体制** {regime_label}{rb} · {(macro_regime or {}).get('summary') or ''}")

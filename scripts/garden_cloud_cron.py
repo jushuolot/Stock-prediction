@@ -124,6 +124,7 @@ def run_scan(*, max_picks: int = 5) -> dict:
         cloud_sync_at=now,
         strategy_hints=strategy_hints,
         macro_regime=regime.as_dict(),
+        near_miss_summary=str(stats.get("near_miss_summary") or ""),
     )
     payload = {
         "generated_at": now,
@@ -136,6 +137,8 @@ def run_scan(*, max_picks: int = 5) -> dict:
         "nightly_brief": nightly,
         "hit_summary": pick_meta.get("hit_summary"),
         "strategy_hints": strategy_hints,
+        "near_misses": stats.get("near_misses") or [],
+        "near_miss_summary": stats.get("near_miss_summary") or "",
         "calibration": calibration,
         "snapshot_diff": snap_pack.get("diff"),
         "weekly_summary": snap_pack.get("weekly_summary"),

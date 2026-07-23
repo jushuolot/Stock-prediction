@@ -28,6 +28,12 @@ from src.analysis.daily_picks import (
 )
 from src.analysis.signals import add_indicators, score_stock
 from src.analysis.pick_review import pattern_score_adjustments_from_log
+from src.analysis.near_miss import (
+    LOW_SCORE_NEAR_BAND,
+    NearMiss,
+    rank_near_misses,
+    summarize_near_misses,
+)
 from src.analysis.precision_gate import evaluate_precision
 from src.analysis.stock_quality import QualityVerdict, evaluate_stock_quality
 
@@ -309,6 +315,7 @@ def rank_tomorrow_a_picks(
         "skipped_quality": 0,
         "skipped_precision": 0,
         "mode": "tomorrow_predict_precision",
+        "near_misses": [],
     }
     if universe is None or universe.empty:
         return [], stats
@@ -321,6 +328,7 @@ def rank_tomorrow_a_picks(
         pattern_adj[str(k)] = pattern_adj.get(str(k), 0.0) + float(v)
     score_floor = float(cal.get("score_floor_delta") or 0)
     buy_delta = float(cal.get("buy_threshold_delta") or 0)
+    near_raw: list[NearMiss] = []
 
     def _sort_key(row: pd.Series) -> float:
         pct = _f(row.get("涨跌幅%"))
@@ -390,11 +398,34 @@ def rank_tomorrow_a_picks(
         qv = evaluate_stock_quality(item["代码"])
         if not qv.ok:
             stats["skipped_quality"] = int(stats.get("skipped_quality") or 0) + 1
+            near_raw.append(
+                NearMiss(
+                    code=item["代码"],
+                    name=item["名称"],
+                    stage="quality",
+                    reason=(qv.reject_reason or "质量未过")[:72],
+                    score=round(float(ta.tomorrow_score), 1),
+                    pattern=ta.pattern,
+                    pct=list_pct,
+                )
+            )
             continue
         adj = float(np.clip(ta.tomorrow_score + qv.score_delta, 0, 88))
         min_score = 64.0 + score_floor  # P129：底线抬高
         if adj < min_score:
             stats["low_score"] += 1
+            if adj >= min_score - LOW_SCORE_NEAR_BAND:
+                near_raw.append(
+                    NearMiss(
+                        code=item["代码"],
+                        name=item["名称"],
+                        stage="low_score",
+                        reason=f"明日分 {adj:.0f}<{min_score:.0f}",
+                        score=round(adj, 1),
+                        pattern=ta.pattern,
+                        pct=list_pct,
+                    )
+                )
             continue
         want_buy = ta.signal == SIGNAL_TOMORROW_BUY and _a_buy_threshold(
             item["代码"], adj, qv, extra=buy_delta
@@ -410,6 +441,18 @@ def rank_tomorrow_a_picks(
         )
         if not pv.ok:
             stats["skipped_precision"] = int(stats.get("skipped_precision") or 0) + 1
+            near_raw.append(
+                NearMiss(
+                    code=item["代码"],
+                    name=item["名称"],
+                    stage="precision",
+                    reason=(pv.reject_reason or "精准闸门未过")[:72],
+                    score=round(adj, 1),
+                    precision_score=float(pv.precision_score),
+                    pattern=ta.pattern,
+                    pct=list_pct,
+                )
+            )
             continue
         sig = SIGNAL_BUY if pv.allow_buy else SIGNAL_WATCH
         tag_s = (" · " + "、".join(pv.tags[:3])) if pv.tags else ""
@@ -463,6 +506,9 @@ def rank_tomorrow_a_picks(
     if not picks:
         stats["empty_precision"] = True
 
+    near_rows = rank_near_misses(near_raw)
+    stats["near_misses"] = near_rows
+    stats["near_miss_summary"] = summarize_near_misses(near_rows)
     stats["target_date"] = target
     stats["buy_signals"] = buy_count
     return picks, stats

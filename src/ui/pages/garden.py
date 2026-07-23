@@ -220,6 +220,7 @@ def _render_nightly_brief(
 ) -> None:
     """佛祖每晚一页：结论 + 建议 + 可下载。"""
     hit_summary, strategy_hints = _effective_hit_summary(pick_log)
+    scan = dict(st.session_state.get("last_pick_scan") or {})
     brief = build_nightly_brief(
         ritual=st.session_state.get("ritual_meta"),
         predict_for=predict_for,
@@ -230,6 +231,7 @@ def _render_nightly_brief(
         cloud_sync_at=st.session_state.get("_cloud_sync_at"),
         strategy_hints=strategy_hints,
         macro_regime=st.session_state.get("macro_regime"),
+        near_miss_summary=str(scan.get("near_miss_summary") or ""),
     )
     st.session_state.nightly_brief = brief
     mood = str(brief.get("mood") or "yellow")
@@ -249,6 +251,32 @@ def _render_nightly_brief(
         use_container_width=True,
         key="garden_download_brief_md",
     )
+
+
+def _render_near_miss_board(scan_stats: dict) -> None:
+    """P130：展示差一点过关的标的（非推荐）。"""
+    rows = list(scan_stats.get("near_misses") or [])
+    if not rows:
+        return
+    from src.analysis.near_miss import stage_label
+
+    st.markdown("### 差一点 · 近失榜")
+    st.caption("已过技术扫描、未过闸门 — **不是推荐**，只解释为何空仓/少荐。")
+    table = []
+    for r in rows:
+        table.append(
+            {
+                "阶段": stage_label(str(r.get("stage") or "")),
+                "名称": r.get("name"),
+                "代码": r.get("code"),
+                "模式": r.get("pattern") or "—",
+                "明日分": r.get("score"),
+                "精准分": r.get("precision_score"),
+                "榜单日涨跌%": r.get("pct"),
+                "未过原因": r.get("reason") or "—",
+            }
+        )
+    show_df(pd.DataFrame(table), use_container_width=True, hide_index=True)
 
 
 def _try_auto_verify_garden(*, pick_log: list, readonly: bool) -> list:
@@ -409,6 +437,13 @@ def render() -> None:
             st.session_state["_weekly_summary"] = cloud["weekly_summary"]
         if cloud.get("macro_regime"):
             st.session_state["macro_regime"] = cloud["macro_regime"]
+        if cloud.get("stats") or cloud.get("near_misses"):
+            scan = dict(cloud.get("stats") or {})
+            if cloud.get("near_misses") and not scan.get("near_misses"):
+                scan["near_misses"] = cloud["near_misses"]
+            if cloud.get("near_miss_summary") and not scan.get("near_miss_summary"):
+                scan["near_miss_summary"] = cloud["near_miss_summary"]
+            st.session_state.last_pick_scan = scan
         ap = len(st.session_state.get("today_picks") or [])
         gp = len(st.session_state.get("global_picks") or [])
         if ap or gp:
@@ -564,6 +599,7 @@ def render() -> None:
             st.error(f"自动预测失败：{err} · 请点上方红色按钮重试。")
         else:
             st.warning(f"还没有明日预测。点 **「预测明日 A 股 + 全球」**（目标 {predict_for}）。")
+        _render_near_miss_board(scan_stats)
     else:
         if today_picks:
             st.markdown(f"### 🇨🇳 A股 · 明日偏强（{predict_for}）")
@@ -574,6 +610,7 @@ def render() -> None:
             )
         elif not today_picks:
             st.caption("🇨🇳 A股：暂无达标明日标的（可收盘后再试）。")
+            _render_near_miss_board(scan_stats)
 
         if global_picks:
             st.markdown(f"### 🌍 全球 · 明日关注（{predict_for}）")
@@ -582,6 +619,9 @@ def render() -> None:
                 use_container_width=True,
                 hide_index=True,
             )
+
+        if today_picks:
+            _render_near_miss_board(scan_stats)
 
         from src.analysis.daily_picks import DailyPick as _DailyPick
 
