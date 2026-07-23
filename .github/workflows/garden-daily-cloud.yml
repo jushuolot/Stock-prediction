@@ -1,0 +1,59 @@
+name: garden-daily-cloud
+
+# GitHub 云端扫 A 股 → 写入 cloud_state/ 并 push（零本地）
+
+on:
+  schedule:
+    # 北京时间 20:00 ≈ UTC 12:00
+    - cron: "0 12 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+          cache-dependency-path: requirements.txt
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Garden cloud scan
+        env:
+          STOCK_WEBHOOK_URL: ${{ secrets.STOCK_WEBHOOK_URL }}
+        run: python3 scripts/garden_cloud_cron.py
+
+      - name: Cohort multi-user analytics
+        run: |
+          if [ -f scripts/cohort_cloud_cron.py ]; then
+            python3 scripts/cohort_cloud_cron.py
+          else
+            echo "cohort_cloud_cron.py missing, skip"
+          fi
+
+      - name: Commit cloud picks
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add cloud_state/
+          git diff --staged --quiet || git commit -m "cloud: daily garden A-share picks"
+          git push
+
+      - name: Buddha self-check
+        run: python3 scripts/buddha_self_check.py --strict
+
+      - name: Restart Streamlit Cloud (optional)
+        env:
+          STREAMLIT_API_TOKEN: ${{ secrets.STREAMLIT_API_TOKEN }}
+          STREAMLIT_APP_ID: ${{ secrets.STREAMLIT_APP_ID }}
+        run: python3 scripts/streamlit_cloud_restart.py
