@@ -75,7 +75,18 @@ def run_checks(*, strict_cloud: bool = False) -> tuple[list[str], list[str]]:
         if outlook.get("crash_prob_1_2w_pct") is not None:
             ok.append(f"大盘展望：1~2周大跌概率 {outlook['crash_prob_1_2w_pct']}%")
         if not ap and not gp and strict_cloud:
-            warn.append("云端 picks 为空（cron 应保留旧推荐或黄灯说明）")
+            nm = cloud.get("near_misses") or (cloud.get("stats") or {}).get("near_misses") or []
+            brief_ok = bool((cloud.get("nightly_brief") or {}).get("action"))
+            archived = bool(cloud.get("previous_picks"))
+            level = str(ritual.get("ritual_level") or "")
+            # P130b：诚实空仓 + 近失/黄灯/旧荐归档 视为达标，不再强制保留旧 picks
+            if nm or (level in ("yellow", "red") and brief_ok) or archived:
+                ok.append(
+                    f"诚实空仓可解释：近失{len(nm)} · ritual={level or '—'} · "
+                    f"归档={'有' if archived else '无'}"
+                )
+            else:
+                warn.append("云端 picks 为空且缺少近失/黄灯说明（不可解释空仓）")
         err_n = int((cloud.get("stats") or {}).get("errors") or 0)
         scanned = int((cloud.get("stats") or {}).get("scanned") or 0)
         if scanned and err_n > scanned // 2:
