@@ -216,27 +216,26 @@ def main() -> int:
     if stdout_only:
         print(payload.get("markdown") or "")
         return 0
+    # P130b：空仓也写完整 payload（含近失榜/今晚查岗），不再用旧推荐「顶替」今日结论
     if n == 0 and gn == 0 and LATEST_JSON.exists():
         try:
             old = json.loads(LATEST_JSON.read_text(encoding="utf-8"))
             old_n = len(old.get("picks") or [])
             old_gn = len(old.get("global_picks") or [])
             if old_n or old_gn:
-                old["ritual"] = payload.get("ritual")
-                old["data_probe"] = payload.get("data_probe")
-                old["generated_at"] = payload.get("generated_at")
-                old["market_outlook"] = payload.get("market_outlook")
-                old["stats"] = payload.get("stats")
-                old["predict_for"] = payload.get("predict_for")
-                path = write_cloud_state(old)
+                payload["previous_picks"] = {
+                    "generated_at": old.get("generated_at"),
+                    "predict_for": old.get("predict_for"),
+                    "picks": old.get("picks") or [],
+                    "global_picks": old.get("global_picks") or [],
+                    "note": "昨夜/上次推荐存档（今日未达标，仅供对照）",
+                }
                 print(
-                    f"[garden_cloud_cron] empty scan, kept previous "
-                    f"a_picks={old_n} global={old_gn} ritual updated"
+                    f"[garden_cloud_cron] empty today; archived previous "
+                    f"a_picks={old_n} global={old_gn} under previous_picks"
                 )
-                maybe_webhook(old)
-                return 0
         except Exception as exc:
-            print(f"[garden_cloud_cron] keep-previous skip: {exc}")
+            print(f"[garden_cloud_cron] archive-previous skip: {exc}")
     path = write_cloud_state(payload)
     print(f"[garden_cloud_cron] wrote {path}")
     maybe_webhook(payload)

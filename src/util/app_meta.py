@@ -2,9 +2,9 @@
 
 from __future__ import annotations
 
-APP_VERSION = "6.4.0"
-EVOLUTION_STEP = 1180
-EVOLUTION_PHASE = "P130"
+APP_VERSION = "6.4.1"
+EVOLUTION_STEP = 1181
+EVOLUTION_PHASE = "P130b"
 BUILD_LABEL = f"{EVOLUTION_PHASE} · step {EVOLUTION_STEP}"
 
 CHANGELOG: list[tuple[str, str]] = [
@@ -71,4 +71,5 @@ CHANGELOG: list[tuple[str, str]] = [
     ("P129", "精准闸门：多信号确认 + 禁追高 + 弱模式剔除 · v6.3.1"),
     ("P129b", "全站表格涨跌配色：红涨绿跌 · v6.3.2"),
     ("P130", "近失榜：闸门拒票可解释 + 空仓透明度 · v6.4.0"),
+    ("P130b", "空仓日写全量结论，旧荐归档 previous_picks · v6.4.1"),
 ]
