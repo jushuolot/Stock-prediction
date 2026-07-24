@@ -1,5 +1,5 @@
 {
-  "date": "2026-07-23",
+  "date": "2026-07-24",
   "items": [
     {
       "code": "000725",
@@ -7,7 +7,7 @@
       "tag": "预测未中·复盘",
       "score": null,
       "pct": null,
-      "one_line": "轻量分析失败：未获取到行情：000725",
+      "one_line": "轻量分析失败：Too Many Requests. Rate limited. Try afte",
       "verdict": "待查"
     },
     {
@@ -16,7 +16,16 @@
       "tag": "预测未中·复盘",
       "score": null,
       "pct": null,
-      "one_line": "轻量分析失败：未获取到行情：600487",
+      "one_line": "轻量分析失败：Too Many Requests. Rate limited. Try afte",
+      "verdict": "待查"
+    },
+    {
+      "code": "603407",
+      "name": "长裕集团",
+      "tag": "预测未中·复盘",
+      "score": null,
+      "pct": null,
+      "one_line": "轻量分析失败：Too Many Requests. Rate limited. Try afte",
       "verdict": "待查"
     },
     {
@@ -25,34 +34,25 @@
       "tag": "预测未中·复盘",
       "score": null,
       "pct": null,
-      "one_line": "轻量分析失败：未获取到行情：001309",
+      "one_line": "轻量分析失败：Too Many Requests. Rate limited. Try afte",
       "verdict": "待查"
     },
     {
-      "code": "920222",
-      "name": "益坤电气",
-      "tag": "快照异动Δ+23.4%",
+      "code": "301583",
+      "name": "托伦斯",
+      "tag": "快照异动Δ+28.6%",
       "score": null,
       "pct": null,
-      "one_line": "轻量分析失败：未获取到行情：920222",
+      "one_line": "轻量分析失败：Too Many Requests. Rate limited. Try afte",
       "verdict": "待查"
     },
     {
-      "code": "920088",
-      "name": "科力股份",
-      "tag": "快照异动Δ-21.8%",
+      "code": "920193",
+      "name": "吉和昌",
+      "tag": "快照异动Δ-25.2%",
       "score": null,
       "pct": null,
-      "one_line": "轻量分析失败：未获取到行情：920088",
-      "verdict": "待查"
-    },
-    {
-      "code": "300534",
-      "name": "陇神戎发",
-      "tag": "快照异动Δ-19.4%",
-      "score": null,
-      "pct": null,
-      "one_line": "轻量分析失败：未获取到行情：300534",
+      "one_line": "轻量分析失败：Too Many Requests. Rate limited. Try afte",
       "verdict": "待查"
     }
   ]

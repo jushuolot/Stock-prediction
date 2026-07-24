@@ -1,113 +1,113 @@
 {
-  "prev_date": "2026-07-14",
-  "curr_date": "2026-07-23",
-  "compared": 60,
-  "avg_pct_delta": -4.83,
+  "prev_date": "2026-07-23",
+  "curr_date": "2026-07-24",
+  "compared": 81,
+  "avg_pct_delta": -2.34,
   "movers": [
     {
-      "code": "920222",
-      "name": "益坤电气",
-      "prev_pct": 6.58,
-      "curr_pct": 30.0,
-      "delta_pct": 23.42
-    },
-    {
-      "code": "920088",
-      "name": "科力股份",
-      "prev_pct": 24.21,
-      "curr_pct": 2.4,
-      "delta_pct": -21.81
-    },
-    {
-      "code": "300534",
-      "name": "陇神戎发",
-      "prev_pct": 16.33,
-      "curr_pct": -3.09,
-      "delta_pct": -19.42
-    },
-    {
-      "code": "300164",
-      "name": "通源石油",
-      "prev_pct": 20.04,
-      "curr_pct": 3.05,
-      "delta_pct": -16.99
-    },
-    {
-      "code": "002384",
-      "name": "东山精密",
-      "prev_pct": 10.0,
-      "curr_pct": -4.99,
-      "delta_pct": -14.99
-    },
-    {
-      "code": "920267",
-      "name": "鑫汇科",
-      "prev_pct": 7.55,
-      "curr_pct": -7.37,
-      "delta_pct": -14.92
+      "code": "301583",
+      "name": "托伦斯",
+      "prev_pct": -8.64,
+      "curr_pct": 20.0,
+      "delta_pct": 28.64
     },
     {
       "code": "920193",
       "name": "吉和昌",
-      "prev_pct": 1.85,
-      "curr_pct": 15.19,
-      "delta_pct": 13.34
+      "prev_pct": 15.19,
+      "curr_pct": -10.01,
+      "delta_pct": -25.19
     },
     {
-      "code": "688347",
-      "name": "华虹宏力",
-      "prev_pct": 0.74,
-      "curr_pct": -12.58,
-      "delta_pct": -13.32
+      "code": "002197",
+      "name": "证通电子",
+      "prev_pct": 10.04,
+      "curr_pct": -10.04,
+      "delta_pct": -20.08
     },
     {
-      "code": "300502",
-      "name": "新易盛",
-      "prev_pct": 10.99,
-      "curr_pct": -2.26,
-      "delta_pct": -13.25
+      "code": "600396",
+      "name": "华电辽能",
+      "prev_pct": 9.99,
+      "curr_pct": -9.99,
+      "delta_pct": -19.98
+    },
+    {
+      "code": "920222",
+      "name": "益坤电气",
+      "prev_pct": 30.0,
+      "curr_pct": 10.49,
+      "delta_pct": -19.51
+    },
+    {
+      "code": "301292",
+      "name": "海科新源",
+      "prev_pct": 20.0,
+      "curr_pct": 1.71,
+      "delta_pct": -18.3
+    },
+    {
+      "code": "300444",
+      "name": "双杰电气",
+      "prev_pct": 20.0,
+      "curr_pct": 3.25,
+      "delta_pct": -16.75
     },
     {
       "code": "002156",
       "name": "通富微电",
-      "prev_pct": 5.84,
-      "curr_pct": -6.78,
-      "delta_pct": -12.63
+      "prev_pct": -6.78,
+      "curr_pct": 9.77,
+      "delta_pct": 16.55
     },
     {
-      "code": "300214",
-      "name": "日科化学",
-      "prev_pct": 8.94,
-      "curr_pct": 20.0,
-      "delta_pct": 11.06
+      "code": "002141",
+      "name": "贤丰控股",
+      "prev_pct": 7.16,
+      "curr_pct": -5.96,
+      "delta_pct": -13.11
     },
     {
-      "code": "688498",
-      "name": "源杰科技",
-      "prev_pct": 13.12,
-      "curr_pct": 2.12,
-      "delta_pct": -11.0
+      "code": "300062",
+      "name": "中能电气",
+      "prev_pct": 20.04,
+      "curr_pct": 7.09,
+      "delta_pct": -12.95
     },
     {
-      "code": "600183",
-      "name": "生益科技",
-      "prev_pct": 10.0,
-      "curr_pct": -0.71,
-      "delta_pct": -10.72
+      "code": "688072",
+      "name": "拓荆科技",
+      "prev_pct": -6.08,
+      "curr_pct": 6.46,
+      "delta_pct": 12.54
     },
     {
-      "code": "301583",
-      "name": "托伦斯",
-      "prev_pct": -19.28,
-      "curr_pct": -8.64,
-      "delta_pct": 10.64
+      "code": "300191",
+      "name": "潜能恒信",
+      "prev_pct": 11.31,
+      "curr_pct": -0.92,
+      "delta_pct": -12.23
     },
     {
-      "code": "002185",
-      "name": "华天科技",
-      "prev_pct": 6.42,
-      "curr_pct": -3.96,
-      "delta_pct": -10.38
+      "code": "920079",
+      "name": "乔路铭",
+      "prev_pct": -15.95,
+      "curr_pct": -3.73,
+      "delta_pct": 12.22
+    },
+    {
+      "code": "603459",
+      "name": "红板科技",
+      "prev_pct": 6.23,
+      "curr_pct": -5.56,
+      "delta_pct": -11.79
+    },
+    {
+      "code": "920267",
+      "name": "鑫汇科",
+      "prev_pct": -7.37,
+      "curr_pct": 4.38,
+      "delta_pct": 11.74
     }
   ],
   "pick_checks": [
@@ -115,83 +115,104 @@
       "code": "000725",
       "name": "京东方Ａ",
       "signal": "买入",
-      "delta_pct": -2.45,
+      "delta_pct": -4.79,
       "hit": false
     },
     {
       "code": "600487",
       "name": "亨通光电",
       "signal": "观望",
-      "delta_pct": -5.24,
+      "delta_pct": -6.82,
+      "hit": false
+    },
+    {
+      "code": "603407",
+      "name": "长裕集团",
+      "signal": "观望",
+      "delta_pct": -7.03,
+      "hit": false
+    },
+    {
+      "code": "603407",
+      "name": "长裕集团",
+      "signal": "买入",
+      "delta_pct": -7.03,
       "hit": false
     },
     {
       "code": "000725",
       "name": "京东方Ａ",
       "signal": "买入",
-      "delta_pct": -2.45,
+      "delta_pct": -4.79,
+      "hit": false
+    },
+    {
+      "code": "603407",
+      "name": "长裕集团",
+      "signal": "买入",
+      "delta_pct": -7.03,
       "hit": false
     },
     {
       "code": "001309",
       "name": "德明利",
       "signal": "观望",
-      "delta_pct": -7.08,
+      "delta_pct": -3.21,
       "hit": false
     },
     {
       "code": "001309",
       "name": "德明利",
       "signal": "观望",
-      "delta_pct": -7.08,
+      "delta_pct": -3.21,
       "hit": false
     },
     {
       "code": "001309",
       "name": "德明利",
       "signal": "观望",
-      "delta_pct": -7.08,
+      "delta_pct": -3.21,
       "hit": false
     },
     {
       "code": "001309",
       "name": "德明利",
       "signal": "观望",
-      "delta_pct": -7.08,
+      "delta_pct": -3.21,
       "hit": false
     },
     {
       "code": "000725",
       "name": "京东方Ａ",
       "signal": "买入",
-      "delta_pct": -2.45,
+      "delta_pct": -4.79,
       "hit": false
     },
     {
       "code": "000725",
       "name": "京东方Ａ",
       "signal": "观望",
-      "delta_pct": -2.45,
+      "delta_pct": -4.79,
       "hit": false
     },
     {
       "code": "000725",
       "name": "京东方Ａ",
       "signal": "观望",
-      "delta_pct": -2.45,
+      "delta_pct": -4.79,
       "hit": false
     },
     {
       "code": "001309",
       "name": "德明利",
       "signal": "观望",
-      "delta_pct": -7.08,
+      "delta_pct": -3.21,
       "hit": false
     }
   ],
   "conclusions": [
-    "快照对比 60 只，均涨跌变化 -4.83%。",
-    "昨日推荐 11 只，快照验证 0 只方向正确。",
-    "最大异动 益坤电气 920222 Δ+23.4%。"
+    "快照对比 81 只，均涨跌变化 -2.34%。",
+    "昨日推荐 14 只，快照验证 0 只方向正确。",
+    "最大异动 托伦斯 301583 Δ+28.6%。"
   ]
 }
